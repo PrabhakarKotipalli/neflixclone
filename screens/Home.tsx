@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import {FlatList,Text,View,Image,ScrollView, ImageBackground} from "react-native"
 import Styles from "../styles/styles"
 import axios from "axios"
-import instance from "../components/axios"
+
 
 
 const MovieComponent:React.FC<IProps> = ({ img = '', title = '' }: IProps) => {
@@ -48,14 +48,14 @@ const Home:React.FC = () => {
       
 
     const [movies,setMovies] = useState([{original_title:"",poster_path:""}])
-    const [bg,setBg] = useState("/kaIfm5ryEOwYg8mLbq8HkPuM1Fo.jpg")
+  
     useEffect(()=>{
         APIcall()
     },[])
 
     function APIcall()
     {
-        instance.get("/4/list/1?api_key=7b096616042c9f831c6fb19d1712eed9")
+        axios.get("https://api.themoviedb.org/4/list/1?api_key=7b096616042c9f831c6fb19d1712eed9")
         .then(resp=>{
             console.log(resp.data)
             setMovies(resp.data.results)
